@@ -1,6 +1,8 @@
 streamlit
 pandas
+numpy
 plotly
-openpyxl
-# Si usaras el modelo Prophet real: prophet
-# Si usaras scikit-learn real: scikit-learn
+prophet==1.1.0 # Specify version as prophet can be sensitive to dependencies
+pmdarima==2.0.0 # Specify version for pmdarima
+scikit-learn # Used by pmdarima and LinearRegression
+openpyxl # For reading .xlsx files
