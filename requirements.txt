@@ -2,7 +2,12 @@ streamlit
 pandas
 numpy
 plotly
-prophet==1.1.0 # Specify version as prophet can be sensitive to dependencies
-pmdarima==2.0.0 # Specify version for pmdarima
-scikit-learn # Used by pmdarima and LinearRegression
-openpyxl # For reading .xlsx files
+prophet # Removed strict version pinning
+pmdarima # Removed strict version pinning
+scikit-learn
+openpyxl
+matplotlib # Added common dependency
+scipy # Added common dependency
+statsmodels # Added common dependency for pmdarima
+
+
