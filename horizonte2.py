@@ -55,7 +55,7 @@ def check_password():
         if submitted:
             if username == DEMO_USER and password == DEMO_PASSWORD:
                 st.session_state["password_correct"] = True
-                st.experimental_rerun()
+                st.rerun() # CORREGIDO: Usar st.rerun()
             else:
                 st.error("❌ Usuario o Contraseña incorrectos.")
     
@@ -100,20 +100,17 @@ def display_main_menu():
     for i, key in enumerate(module_keys):
         col_index = i % 2 
         with cols[col_index]:
-            # Al presionar el botón, se llama a navigate_to para cambiar el estado
             if st.button(MODULOS[key], key=f"btn_{key}", use_container_width=True):
                 navigate_to(key)
-                st.experimental_rerun()
+                st.rerun() # CORREGIDO: Usar st.rerun()
         
-        # Si estamos en la segunda columna o es el último módulo, añadimos un separador
         if col_index == 1 or i == len(module_keys) - 1:
             st.markdown("---")
 
 
 def process_loaded_data(uploaded_files_map):
     """
-    CORRECCIÓN: Garantiza que los DataFrames de sesión existan, inicializándolos 
-    con datos simulados (placeholders) inmediatamente, para que la app no falle.
+    Garantiza que los DataFrames de sesión existan.
     """
     
     df_placeholder, _ = get_placeholder_data(1) 
@@ -133,7 +130,7 @@ def process_loaded_data(uploaded_files_map):
     
     # Importante: Redirige al menú principal después del procesamiento
     navigate_to("Menu") 
-    st.experimental_rerun() 
+    st.rerun() # CORREGIDO: Usar st.rerun()
 
 
 def load_data_from_upload():
@@ -176,8 +173,6 @@ def create_pdf_report(df_results, module_name):
 
 
 # --- MÓDULOS DE ANÁLISIS COMPLETOS (7/7) ---
-# *Nota: Las funciones de los módulos permanecen igual que en la última versión, 
-# asegurando que todas las funcionalidades (EDA, Predicción/Simulación) estén presentes.*
 
 def display_modulo_gobernanza(horizon):
     """Módulo 1: Gobernanza y Dueños (Visión Ejecutiva)."""
@@ -385,7 +380,7 @@ if __name__ == "__main__":
             # Botón para volver al menú principal (visible en la parte superior del módulo)
             if st.button("⬅️ Volver al Menú de Módulos"):
                 navigate_to("Menu")
-                st.experimental_rerun()
+                st.rerun() # CORREGIDO: Usar st.rerun()
                 
             # Renderizar el contenido del módulo seleccionado
             st.header(MODULOS.get(st.session_state['current_module'], "Módulo Desconocido"))
@@ -394,5 +389,4 @@ if __name__ == "__main__":
         else:
             # En caso de estado desconocido, vuelve al menú
             navigate_to("Menu")
-            st.experimental_rerun()
-
+            st.rerun() # CORREGIDO: Usar st.rerun()
